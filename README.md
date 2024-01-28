@@ -1,4 +1,4 @@
-# SpringBoot APP Project
+# SpringBoot App Project
 
 ## 1) Introduction : 
 
