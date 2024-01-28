@@ -1,4 +1,4 @@
-# OrientAI Project
+# SpringBoot APP Project
 
 ## 1) Introduction : 
 
