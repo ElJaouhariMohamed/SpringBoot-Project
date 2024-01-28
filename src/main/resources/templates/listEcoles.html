@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+		 <meta charset="UTF-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<link rel="stylesheet" href="/css/signup.css">
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <title>Liste des Ecoles - Khouribga Portal </title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<!-- ICON -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/image/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/image/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/image/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<!-- /ICON -->
+	
+	    <!-- All CSS Plugins -->
+	    <link rel="stylesheet" type="text/css" href="/css/plugin.css">
+	 
+	    <!-- Main CSS Stylesheet -->
+	    <link rel="stylesheet" type="text/css" href="/css/style.css">
+	
+	    <!-- Google Web Fonts  -->
+	    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+	
+	    <!-- Syntax Highlighter  -->
+	    <link rel="stylesheet" type="text/css" href="/css/syntax/shCore.css">
+	    <link rel="stylesheet" type="text/css" href="/css/syntax/shThemeDefault.css">
+	
+	
+	    <!-- Bootstrap core CSS -->
+	    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
+	    
+	    <link rel="stylesheet" href="/css/fontawesome.css">
+	    <link rel="stylesheet" href="/css/templatemo-woox-travel.css">
+	    <!-- Additional 
+	    CSS Files -->
+	    <link rel="stylesheet" href="/css/owl.css">
+	    
+	    <link rel="stylesheet" href="/css/animate.css">
+	    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+	    
+    </head>
+    <body>
+		
+		 <!-- Preloader Start -->
+    <div class="preloader">
+        <div class="rounder"></div>
+    </div>
+    <!-- Preloader End -->
+    <!-- ***** Preloader End ***** -->
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky" style="height:80px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+						<div class="logo">
+								<a href="/" th:href="@{/}" >
+		                            <img src="/image/logoW.png" alt="" style="height:5em;width:5em;margin-top: 2px;">
+		                        </a>
+						</div>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li style="margin-left:-300px;"><a th:href="@{/}" href="#" class="active"><i class="fa-solid fa-house" style="color: #ffffff;"></i>Acceuil</a></li>
+                            <li><a th:href="@{/public/khouribga}" href="#"><i class="fa-solid fa-city" style="color: #ffffff;"></i>Khouribga</a></li>
+                            <li style="margin-right:-5%"><a th:if="${#authorization.expression('!isAuthenticated()')}" th:href="@{/public/vie}" href="#"><i class="fa-solid fa-users-line fa-city" style="color: #ffffff;"></i>La vie Etudiante</a></li>
+                            <li><a th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}" th:href="@{/admin/vie}" href="#"><i class="fa-solid fa-users-line fa-beat-fade" style="color: #ffffff;"></i>La vie Etudiante</a></li>
+                            <li><a th:if="${#authorization.expression('hasAuthority(''USER'')')}" th:href="@{/user/vie}" href="#"><i class="fa-solid fa-users-line fa-beat-fade" style="color: #ffffff;"></i>La vie Etudiante</a></li>
+                            <li><a th:href="@{/public/Contact}" href="#"><i class="fa-solid fa-file-signature" style="color: #ffffff;"></i>Nous Contacter</a></li>
+				            <li th:if="${#authorization.expression('!isAuthenticated()')}">
+				              <a href="/login" th:href="@{/login}">
+				                <i class="fa-solid fa-right-to-bracket" style="color: #ffffff;"></i>Se Connecter
+				              </a>
+				            </li>
+				            <li th:if="${#authorization.expression('!isAuthenticated()')}">
+				              <a href="/signup" th:href="@{/public/signup}">
+				                <i class="fa-solid fa-arrows-to-dot" style="color: #ffffff;"></i>S'inscrire
+				              </a>
+				            </li>
+				            <li th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+				              <a href="/admin" th:href="@{/admin}">
+				                <i class="fa-solid fa-screwdriver-wrench" style="color: #ffffff;"></i>Admin
+				                </a>
+				            </li>
+				            <li th:if="${#authorization.expression('hasAuthority(''USER'')')}"><a th:href="@{/user/list/article}" href="#"><i class="fa-regular fa-newspaper" style="color: #ffffff;"></i>Les Articles</a></li>
+				            <li th:if="${#authorization.expression('hasAuthority(''USER'')')}">
+				              <a href="/profile" th:href="@{/user/profile}">
+				               <i class="fa-solid fa-user" style="color: #ffffff;"></i>Profile
+				                </a>
+				            </li>
+				            <li th:if="${#authorization.expression('isAuthenticated()')}">
+				              <a href="/logout" th:href="@{/logout}" onclick="$('#form').submit();">
+				                <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i>Se Deconnecter
+				              </a>
+				             <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+				            </li>
+			          </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <br><br><br><br>
+    <!-- ***** Header Area End ***** -->
+     <!-- ***** Main Banner Area Start ***** -->
+    <div class="container">
+		<h1>Portail d'administration : Liste des ecoles</h1>
+		<div class="row">
+			<div class="col-md-2 col-sm-2">
+			</div>
+			<div class="col-md-8 col-sm-8">
+				<div th:switch="${status?.code}">
+				    <span th:case="'200'"><div class="alert alert-success" ><h5 th:text="${status?.message}"/></div></span>
+				    <span th:case="'404'"><div class="alert alert-secondary" ><h5 th:text="${status?.message}"/></div></span>
+				    <span th:case="'500'"><div class="alert alert-danger" ><h5 th:text="${status?.message}"/></div></span>    
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-2">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 col-sm-3">
+				<a href="/admin/ajouter/ecoles" class="btn btn-success">Ajouter une ecole</a>
+				<h4>Recherche :</h4>
+				<form name="finder" action="#" th:action="@{/admin/rechParNom/ecoles}"  method = "GET">
+					<label for ="ecoleNiveau">Niveau :</labelfor>
+					<select id="Niveau" name="ecoleNiveau" class="form-control" multiple required>
+								<option value="tout">Tout</option>
+								<option value="Maternelle">Maternelle</option>
+								<option value="Primaire">Primaire</option>
+								<option value="Secondaire">Coll&egrave;ge</option>
+								<option value="Lycee">Lycee</option>
+								<option value="Superieur">Universitaire</option>
+					</select> <input type="text" name="ecoleNom" placeholder="Nom de l'ecole"/><button type="submit" class="btn btn-success">Rechercher</button>
+				</form>
+			</div>
+            <div class="col-md-8 col-sm-8">
+				<table class = "table" style="width:100% ;">
+					<thead>
+						<tr>
+							<td style="width:90% ;">Nom</td>
+							<td>Niveau</td>
+							<td>Nombre d'étudiants</td>
+							<td>Nombre du staff</td>
+							<td>Ann&eacute;e de cr&eacute;ation</td>
+							<td/>
+							<td/>
+							<td>Images</td>
+							<td>Formations</td>
+							<td>Contactes</td>
+						</tr>
+					</thead>
+	                <tbody>
+						<tr th:each="ecole: ${ecoles}">
+							<td th:text="${ecole.Nom}" />
+							<td th:text="${ecole.Niveau}" />
+							<td th:text="${ecole.nbrEtd}" />
+							<td th:text="${ecole.nbrStaff}" />
+							<td th:text="${ecole.anncreation}" />
+							
+							<td>
+								<a th:href="@{/admin/modifier/ecoles/{id}(id=${ecole.ecole_id})}"><div class="btn btn-success">Modifier</div></a>
+							</td>
+							<td>
+								<a th:href="@{/admin/ecoles/supprimer/{id}(id=${ecole.ecole_id})}"><div class="btn btn-danger">Supprimer</div></a>
+							</td>
+							<td>
+								<a th:if="${!ecole.images.isEmpty()}" th:href="@{/admin/list/image/ecole/{id}(id=${ecole.ecole_id})}"><span class="btn btn-warning" th:text="${#lists.size(ecole.images)}"/></a>
+								<a th:if="${ecole.images.isEmpty()}" th:href="@{/admin/list/image/ecole/{id}(id=${ecole.ecole_id})}"><span class="btn btn-warning" th:text="0"/></a>
+							</td>
+							<td>
+								<a th:if="${!ecole.formations.isEmpty()}" th:href="@{/admin/list/formation/ecole/{id}(id=${ecole.ecole_id})}"><span class="btn btn-warning" th:text="${#lists.size(ecole.formations)}"/></a>
+								<a th:if="${ecole.formations.isEmpty()}" th:href="@{/admin/list/formation/ecole/{id}(id=${ecole.ecole_id})}"><span class="btn btn-warning" th:text="0"/></a>
+							</td>
+							
+							<td>
+								<a th:if="${!ecole.contacts.isEmpty()}" class="btn btn-warning" th:href="@{/admin/list/contact/ecole/{id}(id=${ecole.ecole_id})}" th:text="${#lists.size(ecole.contacts)}"/>
+								<a th:if="${ecole.contacts.isEmpty()}" class="btn btn-warning" th:href="@{/admin/list/contact/ecole/{id}(id=${ecole.ecole_id})}" th:text="0"/>
+							</td>
+							
+						</tr>
+					</tbody>
+				</table>
+            </div>
+            <div class="col-md-1 col-sm-1">
+			</div>
+		</div>
+	</div>
+	<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; 2023 <a href="#">El Amrani Ilyas &amp; El Jaouhari Mohamed </a>. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
+    <script src="/js/isotope.min.js"></script>
+    <script src="/js/owl-carousel.js"></script>
+    <script src="/js/wow.js"></script>
+    <script src="/js/tabs.js"></script>
+    <script src="/js/popup.js"></script>
+    <script src="/js/custom.js"></script>
+
+    <script>
+        function bannerSwitcher() {
+            next = $('.sec-1-input').filter(':checked').next('.sec-1-input');
+            if (next.length) next.prop('checked', true);
+            else $('.sec-1-input').first().prop('checked', true);
+        }
+
+        var bannerTimer = setInterval(bannerSwitcher, 5000);
+
+        $('nav .controls label').click(function() {
+            clearInterval(bannerTimer);
+            bannerTimer = setInterval(bannerSwitcher, 5000)
+        });
+    </script>
+
+    <!-- All Javascript Plugins  -->
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/plugin.js"></script>
+
+    <!-- Main Javascript File  -->
+    <script type="text/javascript" src="/js/scripts.js"></script>
+    </body>
